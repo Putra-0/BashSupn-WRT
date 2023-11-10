@@ -32,7 +32,7 @@ popd
 
 sed -i 's/ImmortalWrt/BashSupn-WRT/g' config/Config-images.in
 sed -i 's/ImmortalWrt/BashSupn-WRT/g' include/version.mk
-sed -i 's/immortalwrt.org/helmiau.com/g' include/version.mk
+sed -i 's/immortalwrt.org/bashsupn.my.id/g' include/version.mk
 sed -i 's|github.com/immortalwrt/immortalwrt/issues|bashsupn.my.id|g' include/version.mk
 sed -i 's|github.com/immortalwrt/immortalwrt/discussions||g' include/version.mk
 
@@ -58,8 +58,8 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
 git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon
 
 # Add luci-app-tinyfilemanager
-# svn co https://github.com/lynxnexy/luci-app-tinyfilemanager/trunk package/luci-app-tinyfilemanager
-svn co https://github.com/helmiau/helmiwrt-packages/trunk/luci-app-tinyfm package/luci-app-tinyfm
+svn co https://github.com/lynxnexy/luci-app-tinyfilemanager/trunk package/luci-app-tinyfilemanager
+#svn co https://github.com/helmiau/helmiwrt-packages/trunk/luci-app-tinyfm package/luci-app-tinyfm
 
 svn co https://github.com/helmiau/helmiwrt-packages/trunk/badvpn package/badvpn
 svn co https://github.com/helmiau/helmiwrt-packages/trunk/corkscrew package/corkscrew
@@ -72,13 +72,3 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/l
 pushd package/luci-app-openclash/tools/po2lmo
 make && sudo make install
 popd
-
-DIR="package/base-files/files"
-rawgit="https://raw.githubusercontent.com"
-# Make dir if not exist
-[ ! -d $HWOSDIR/bin ] && mkdir -p $HWOSDIR/bin
-
-# run "fixphp" using terminal for use
-wget --no-check-certificate -qO $DIR/bin/fixphp "$rawgit/helmiau/openwrt-config/main/fix-xderm-libernet-gui"
-
-chmod 0755 -R $DIR/bin/*
