@@ -12,6 +12,11 @@ uci set luci.main.mediaurlbase='/luci-static/argon'
 # Disable IPV6 ula prefix
 sed -i 's/^[^#].*option ula/#&/' /etc/config/network
 
+#fix php
+uci set uhttpd.main.index_page='index.php index.html'
+uci commit 
+/etc/init.d/uhttpd restart
+
 # Check file system during boot
 uci set fstab.@global[0].check_fs=1
 uci commit
