@@ -336,7 +336,7 @@ jobs:
           echo '-----'
 
       - name: Upload Bin Archive
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v2
         with:
           name: bin-archive
           path: ${{ env.OPENWRT_ROOT_PATH }}/${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}.zip
