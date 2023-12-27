@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build bcm27xx/bcm2710 openwrt immortalwrt-21.02
+name: Build bcm27xx/bcm2710 immortalwrt-21.02
 
 on:
   workflow_dispatch:
