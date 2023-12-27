@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build bcm27xx/bcm2710 openwrt
+name: Build bcm27xx/bcm2710 openwrt istoreos-23.05
 
 on:
   workflow_dispatch:
@@ -336,7 +336,7 @@ jobs:
           echo '-----'
 
       - name: Upload Bin Archive
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v2
         with:
           name: bin-archive
           path: ${{ env.OPENWRT_ROOT_PATH }}/${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}.zip
