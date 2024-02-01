@@ -5,6 +5,8 @@
 # Author: P3TERX
 # Blog: https://p3terx.com
 #=================================================
+export TERM=xterm  # Tambahkan baris ini untuk mengatasi masalah terminal
+
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 
@@ -14,7 +16,7 @@ git clone --depth=1 -b dev https://github.com/vernesong/OpenClash
 # Add qtools (Tools modems based on the Qualcomm chipset)
 svn co https://github.com/koshev-msk/modemfeed/trunk/packages/telephony/qtools koshev-msk/qtools
 
-# Add the default password for the 'root' user（Change the empty password to 'password'）
+# Add the default password for the 'root' user (Change the empty password to 'password')
 sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' package/base-files/files/etc/shadow
 
 # Set timezone
@@ -36,11 +38,7 @@ sed -i 's/immortalwrt.org/bashsupn.my.id/g' include/version.mk
 sed -i 's|github.com/immortalwrt/immortalwrt/issues|bashsupn.my.id|g' include/version.mk
 sed -i 's|github.com/immortalwrt/immortalwrt/discussions||g' include/version.mk
 
-# Add date version
-export DATE_VERSION=$(date -d "$(rdate -n -4 -p pool.ntp.org)" +'%Y-%m-%d')
-sed -i "s/%C/%C (${DATE_VERSION})/g" package/base-files/files/etc/openwrt_release
-
-# Fix mt76 wireless driverbashsupn.my.id
+# Fix mt76 wireless driver
 pushd package/kernel/mt76
 sed -i '/mt7662u_rom_patch.bin/a\\techo mt76-usb disable_usb_sg=1 > $\(1\)\/etc\/modules.d\/mt76-usb' Makefile
 popd
@@ -64,10 +62,7 @@ svn co https://github.com/helmiau/helmiwrt-packages/trunk/luci-app-tinyfm packag
 svn co https://github.com/helmiau/helmiwrt-packages/trunk/badvpn package/badvpn
 svn co https://github.com/helmiau/helmiwrt-packages/trunk/corkscrew package/corkscrew
 
-#rm -rf feeds/luci/applications/luci-app-filebrowser
-#svn co https://github.com/happy902/luci-app-filebrowser/trunk package/luci-app-filebrowser
-
-rm -rf feeds/luci/applications/luci-app-openclash
+# Add luci-app-openclash
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
 pushd package/luci-app-openclash/tools/po2lmo
 make && sudo make install
