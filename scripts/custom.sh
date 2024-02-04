@@ -56,13 +56,11 @@ git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon
 
 # Add luci-app-tinyfilemanager
 #svn co https://github.com/lynxnexy/luci-app-tinyfilemanager/trunk package/luci-app-tinyfilemanager
-svn co https://github.com/helmiau/helmiwrt-packages/trunk/luci-app-tinyfm package/luci-app-tinyfm
+#svn co https://github.com/helmiau/helmiwrt-packages/trunk/luci-app-tinyfm package/luci-app-tinyfm
 
-svn co https://github.com/helmiau/helmiwrt-packages/trunk/badvpn package/badvpn
-svn co https://github.com/helmiau/helmiwrt-packages/trunk/corkscrew package/corkscrew
+#svn co https://github.com/helmiau/helmiwrt-packages/trunk/badvpn package/badvpn
+#svn co https://github.com/helmiau/helmiwrt-packages/trunk/corkscrew package/corkscrew
 
 # Add luci-app-openclash
-svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
-pushd package/luci-app-openclash/tools/po2lmo
-make && sudo make install
-popd
+svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/openwrt-openclash
+pushd package/openwrt-openclash/tools/po2lmo && make && sudo make install 2>/dev/null && popd
