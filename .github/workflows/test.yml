@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build bcm27xx/bcm2710 openwrt istoreos-23.05
+name: Build bcm27xx/bcm2710 immortalwrt-23.05
 
 on:
   workflow_dispatch:
@@ -17,8 +17,8 @@ on:
 
 env:
   CONFIG_FILE: config/rpi/rpi3-target.config
-  SOURCE_URL: https://github.com/istoreos/istoreos
-  SOURCE_BRANCH: istoreos-23.05
+  SOURCE_URL: https://github.com/openwrt/openwrt
+  SOURCE_BRANCH: openwrt-23.05
   DIY_SH: scripts/custom.sh
   TOOLCHAIN_TAG: toolchain
   CLASH_BINARY_PLATFORM: armv8
@@ -275,7 +275,7 @@ jobs:
           echo -e "$(nproc) thread compile"
           make buildinfo
           make diffconfig buildversion feedsversion
-          make target/compile -j$(nproc) IGNORE_ERRORS="m n" BUILD_LOG=1 V=s || \
+          make target/compile -j$(nproc) IGNORE_ERRORS="m n" BUILD_LOG=1 || \
           yes n | make target/compile -j1 V=s IGNORE_ERRORS=1
           make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j1 V=s IGNORE_ERRORS=1
           make package/index
