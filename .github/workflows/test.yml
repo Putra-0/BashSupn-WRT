@@ -17,15 +17,14 @@ on:
 
 env:
   CONFIG_FILE: config/rpi/rpi3-target.config
-  SOURCE_URL: https://github.com/openwrt/openwrt
-  SOURCE_BRANCH: master
+  SOURCE_URL: https://github.com/immortalwrt/immortalwrt
+  SOURCE_BRANCH: openwrt-23.05
   DIY_SH: scripts/custom.sh
   TOOLCHAIN_TAG: toolchain
   CLASH_BINARY_PLATFORM: armv8
   SPEEDTEST_CLI_BINARY: aarch64
   TOOLCHAIN_RELEASE_UPLOAD: true
   FIRMWARE_RELEASE_UPLOAD: true
-  WEB_ROOT_PATH: /data/www/openwrt.cc
   TZ: Asia/Jakarta
 
 jobs:
