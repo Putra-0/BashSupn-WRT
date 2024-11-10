@@ -18,7 +18,7 @@ on:
 env:
   CONFIG_FILE: config/rpi/rpi3-target.config
   SOURCE_URL: https://github.com/openwrt/openwrt
-  SOURCE_BRANCH: openwrt-24.20
+  SOURCE_BRANCH: openwrt-24.10
   DIY_SH: scripts/custom.sh
   TOOLCHAIN_TAG: toolchain
   CLASH_BINARY_PLATFORM: armv8
