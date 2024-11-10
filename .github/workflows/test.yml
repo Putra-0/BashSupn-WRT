@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build bcm27xx/bcm2710 immortalwrt-23.05
+name: Build bcm27xx/bcm2710 openwrt-23.05
 
 on:
   workflow_dispatch:
@@ -17,8 +17,8 @@ on:
 
 env:
   CONFIG_FILE: config/rpi/rpi3-target.config
-  SOURCE_URL: https://github.com/immortalwrt/immortalwrt
-  SOURCE_BRANCH: master
+  SOURCE_URL: https://github.com/openwrt/openwrt
+  SOURCE_BRANCH: openwrt-24.20
   DIY_SH: scripts/custom.sh
   TOOLCHAIN_TAG: toolchain
   CLASH_BINARY_PLATFORM: armv8
@@ -295,17 +295,11 @@ jobs:
             cmake .
             make
             sudo mv usign /bin
-            mkdir -p $OPENWRT_ROOT_PATH/files/etc/opkg/keys
-            cd $OPENWRT_ROOT_PATH/files/etc/opkg/keys
-            wget -q https://openwrt.cc/keys/key-build.pub
-            mv key-build.pub $(usign -F -p key-build.pub)
           fi
           cd $OPENWRT_ROOT_PATH
           echo "dtparam=i2c_arm=on,audio=on" >> target/linux/bcm27xx/image/config.txt
           mkdir -p files/etc/uci-defaults/
           cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
-          mkdir -p files/www/snapshots
-          cp -r bin/targets files/www/snapshots
           make package/install -j$(nproc) || make package/install -j1 V=s
           make target/install -j$(nproc) || make target/install -j1 V=s
           make json_overview_image_info
@@ -368,7 +362,7 @@ jobs:
           sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
       - name: Download Bin Archive
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: bin-archive
           path: ${{ env.OPENWRT_ROOT_PATH }}
