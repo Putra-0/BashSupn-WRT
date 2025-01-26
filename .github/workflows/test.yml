@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build bcm27xx/bcm2710 openwrt-24.10
+name: Build bcm27xx/bcm2710 openwrt-23.05
 
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ on:
 env:
   CONFIG_FILE: config/rpi/rpi3-target.config
   SOURCE_URL: https://github.com/immortalwrt/immortalwrt
-  SOURCE_BRANCH: openwrt-24.10
+  SOURCE_BRANCH: openwrt-23.05
   DIY_SH: scripts/custom.sh
   TOOLCHAIN_TAG: toolchain
   CLASH_BINARY_PLATFORM: armv8
